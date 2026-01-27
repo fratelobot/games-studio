@@ -2,8 +2,8 @@ import { useRef } from 'react'
 import { RigidBody } from '@react-three/rapier'
 import { useFrame } from '@react-three/fiber'
 import { Mesh } from 'three'
-import { useKeyboard, useGameLoop } from '@games-studio/game-engine'
-import { gameState, gameActions } from '@games-studio/game-engine'
+import { useKeyboard } from '@games-studio/game-engine'
+import { gameState } from '@games-studio/game-engine'
 
 export function GameScene() {
   return (

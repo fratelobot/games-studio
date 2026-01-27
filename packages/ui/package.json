@@ -8,14 +8,15 @@
     "./components/*": "./src/components/*.tsx"
   },
   "scripts": {
-    "lint": "oxlint .",
+    "lint": "oxlint src/",
+    "typecheck": "tsc --noEmit",
     "build": "tsc"
   },
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "clsx": "^2.1.0",
-    "tailwind-merge": "^2.7.0"
+    "tailwind-merge": "^3.0.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
