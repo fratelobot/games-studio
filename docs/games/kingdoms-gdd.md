@@ -55,6 +55,7 @@ A medieval building and warfare game where players collaborate against an AI tha
 - Each player has **their own separate base**
 - Free positioning on map
 - Can be expanded in any direction
+- **Town Hall destroyed = player eliminated**
 
 ### AI Bases
 - **Multiple bases** distributed across the map
@@ -118,8 +119,13 @@ A medieval building and warfare game where players collaborate against an AI tha
 
 | Building | Function |
 |----------|----------|
-| Houses | Shelter workers |
+| Houses | Increase population cap (workers + soldiers) |
 | Barracks | Shelter soldiers, training |
+
+**Population System** (like Stronghold):
+- Houses determine **max population**
+- Population is shared between workers and soldiers
+- More houses = more units available
 
 ### 🛡️ Defensive
 
@@ -254,7 +260,8 @@ Lumbermill → Workshops → Bows/Spears
 ## Workers
 
 - **Trained at Town Hall**
-- Manually assigned to production buildings
+- **Build structures** when assigned to construction
+- **Assigned to production buildings** - once assigned, they produce automatically (no micromanagement)
 - No worker = building doesn't produce
 
 ---
@@ -272,6 +279,7 @@ Lumbermill → Workshops → Bows/Spears
 ## Combat
 
 - **Real-time battles**
+- **Manual unit control** - select units and command them (move, attack)
 - **Damage per second (DPS)** - each unit has its own DPS
 - **Morale:** Units flee when army drops below 20% HP
 
