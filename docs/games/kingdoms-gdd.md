@@ -28,12 +28,34 @@ A medieval building and warfare game where players collaborate against an AI tha
 - **Fog of War** - unexplored areas are hidden
 - **Shared Vision** - allied players share map visibility
 
+---
+
+## Game Session
+
+### Lobby System
+- Players can **create new games** in a lobby
+- Game creator selects a **predefined map**
+- Other players can **browse and join** available games
+- **Join anytime** - new players can join mid-game if slots are available
+
+### Game Start
+- Each player **spawns in a different zone** of the map
+- Starting resources: *(to be defined)*
+- **AI bases are fixed** per map (predefined positions and count)
+
+### Player Slots
+- Maximum players defined per map (1-4)
+- Late joiners start fresh (no catch-up bonus)
+
+---
+
 ## Bases
 
 ### Player Bases
 - Each player has **their own separate base**
 - Free positioning on map
 - Can be expanded in any direction
+- **Town Hall destroyed = player eliminated** (all buildings and units disappear)
 
 ### AI Bases
 - **Multiple bases** distributed across the map
@@ -97,8 +119,13 @@ A medieval building and warfare game where players collaborate against an AI tha
 
 | Building | Function |
 |----------|----------|
-| Houses | Shelter workers |
+| Houses | Increase population cap (workers + soldiers) |
 | Barracks | Shelter soldiers, training |
+
+**Population System** (like Stronghold):
+- Houses determine **max population**
+- Population is shared between workers and soldiers
+- More houses = more units available
 
 ### 🛡️ Defensive
 
@@ -233,7 +260,8 @@ Lumbermill → Workshops → Bows/Spears
 ## Workers
 
 - **Trained at Town Hall**
-- Manually assigned to production buildings
+- **Build structures** when assigned to construction
+- **Assigned to production buildings** - once assigned, they produce automatically (no micromanagement)
 - No worker = building doesn't produce
 
 ---
@@ -251,6 +279,7 @@ Lumbermill → Workshops → Bows/Spears
 ## Combat
 
 - **Real-time battles**
+- **Manual unit control** - select units and command them (move, attack)
 - **Damage per second (DPS)** - each unit has its own DPS
 - **Morale:** Units flee when army drops below 20% HP
 
@@ -293,13 +322,20 @@ Players win when the last AI base is eliminated.
 
 ---
 
-## To Define (Balancing)
+## Balancing
 
-- [ ] Exact building costs
-- [ ] Production times
-- [ ] Exact DPS and HP per unit
+All numerical values will be defined in a dedicated `balancing.ts` config file:
+
+- Building costs
+- Production times
+- Unit stats (HP, DPS, speed)
+- Storage capacities
+- Starting resources
+- AI scaling parameters
+
+This allows easy tweaking without modifying game logic.
 
 ---
 
-*Document Version: 1.0*  
+*Document Version: 1.1*  
 *Last Updated: 2026-01-27*
