@@ -206,12 +206,12 @@ Lumbermill → Ateliere → Arcuri/Sulițe
 | **Spadasin** | 100 | 15 | melee | Sabie |
 | **Sulițaș** | 80 | 12 | melee | Suliță |
 
-### Rock-Paper-Scissors Combat?
+### Combat System
 
-*(De definit - propunere:)*
-- 🏹 Arcași > Sulițași (îi nimeresc de la distanță)
-- 🔱 Sulițași > Spadasini (rază mai mare)
-- ⚔️ Spadasini > Arcași (rapid, ajung în melee)
+- **Fără rock-paper-scissors** - nu există counter-uri între unități
+- Fiecare unitate are **DPS fix**
+- Contează: numărul de unități, poziționare, focusarea țintelor
+- Arcașii au avantaj la distanță, dar sunt slabi în melee
 
 ---
 
@@ -273,13 +273,11 @@ Jucătorii câștigă când ultima bază AI este eliminată.
 
 ---
 
-## De Definit
+## De Definit (Balancing)
 
-- [x] ~~Upkeep~~ → **Constant** (toți consumă mâncare)
-- [x] ~~Baze AI~~ → **Identice cu playerii**
-- [ ] **Combat counters:** Rock-paper-scissors sau toate unitățile egale?
 - [ ] Costuri exacte pentru clădiri
 - [ ] Timpi de producție
+- [ ] DPS și HP exacte per unitate
 
 ---
 
