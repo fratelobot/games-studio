@@ -25,6 +25,8 @@ A medieval building and warfare game where players collaborate against an AI tha
 - **Large, open map**
 - **No predefined territories** - build anywhere
 - **Restriction:** Cannot build while under attack
+- **Fog of War** - unexplored areas are hidden
+- **Shared Vision** - allied players share map visibility
 
 ## Bases
 
@@ -43,6 +45,8 @@ A medieval building and warfare game where players collaborate against an AI tha
 ---
 
 ## Buildings
+
+**No tech tree** - all buildings are available from the start if you have the resources.
 
 ### 🏛️ Main
 
@@ -87,6 +91,7 @@ A medieval building and warfare game where players collaborate against an AI tha
 | Spear Workshop | Wood, Iron | Spears |
 | Armor Workshop | Iron | Armor |
 | Sword Workshop | Iron | Swords |
+| Siege Workshop | Wood, Iron | Rams, Catapults |
 
 ### 🏠 Population
 
@@ -97,10 +102,11 @@ A medieval building and warfare game where players collaborate against an AI tha
 
 ### 🛡️ Defensive
 
-| Building | Function |
-|----------|----------|
-| Tower | Defense, visibility |
-| Wall | Defensive barrier |
+| Building | Function | Variants |
+|----------|----------|----------|
+| Tower | Defense, visibility | Wood, Stone |
+| Wall | Defensive barrier (has HP, can be destroyed) | Wood, Stone |
+| Gate | Controlled entry through walls | Wood, Stone |
 
 ---
 
@@ -200,11 +206,20 @@ Lumbermill → Workshops → Bows/Spears
 
 ## Military Units
 
+### Combat Units
+
 | Unit | HP | DPS | Range | Required Equipment |
 |------|-----|-----|-------|-------------------|
 | **Archer** | 40 | 8 | 8 | Bow |
 | **Swordsman** | 100 | 15 | melee | Sword |
 | **Spearman** | 80 | 12 | melee | Spear |
+
+### Siege Units
+
+| Unit | HP | DPS | Range | Required Equipment | Note |
+|------|-----|-----|-------|-------------------|------|
+| **Battering Ram** | 200 | 30 vs buildings | melee | Wood | Slow, only damages walls/gates |
+| **Catapult** | 80 | 25 (area) | 12 | Wood + Iron | Area damage to buildings and units |
 
 ### Combat System
 
@@ -243,6 +258,11 @@ Lumbermill → Workshops → Bows/Spears
 - When offline, your army **defends automatically**
 - Simple defensive AI: attacks enemies in range
 - You receive a report when you reconnect
+
+### Offline Production
+- **Production continues** at the same rate when offline
+- Resources accumulate in storage
+- Workers keep working assigned buildings
 
 ---
 
