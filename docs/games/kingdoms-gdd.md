@@ -293,13 +293,20 @@ Players win when the last AI base is eliminated.
 
 ---
 
-## To Define (Balancing)
+## Balancing
 
-- [ ] Exact building costs
-- [ ] Production times
-- [ ] Exact DPS and HP per unit
+All numerical values will be defined in a dedicated `balancing.ts` config file:
+
+- Building costs
+- Production times
+- Unit stats (HP, DPS, speed)
+- Storage capacities
+- Starting resources
+- AI scaling parameters
+
+This allows easy tweaking without modifying game logic.
 
 ---
 
-*Document Version: 1.0*  
+*Document Version: 1.1*  
 *Last Updated: 2026-01-27*
