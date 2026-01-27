@@ -1,0 +1,40 @@
+{
+  "name": "@games-studio/demo-game",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "oxlint .",
+    "test": "vitest",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@games-studio/ui": "workspace:*",
+    "@games-studio/game-engine": "workspace:*",
+    "@react-three/fiber": "^9.1.0",
+    "@react-three/drei": "^10.0.0",
+    "@react-three/rapier": "^2.1.0",
+    "three": "^0.175.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "jotai": "^2.12.0",
+    "valtio": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.175.0",
+    "@vitejs/plugin-react": "^4.4.0",
+    "autoprefixer": "^10.4.20",
+    "oxlint": "^0.16.0",
+    "postcss": "^8.5.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.8.0",
+    "vite": "^6.2.0",
+    "vitest": "^3.0.0",
+    "@playwright/test": "^1.52.0"
+  }
+}
