@@ -3,104 +3,104 @@
 ## Overview
 
 **Genre:** Co-op Persistent RTS  
-**Players:** 1-4 jucători vs AI  
+**Players:** 1-4 players vs AI  
 **Inspiration:** Stronghold Kingdoms  
 **Platform:** Web (browser)  
-**Session Duration:** Săptămâni (persistent world)
+**Session Duration:** Weeks (persistent world)
 
 ## Core Concept
 
-Un joc medieval de construcție și război în care jucătorii colaborează împotriva unui AI care se dezvoltă progresiv. Construiești baze, antrenezi armate și lupți pentru a distruge toate bazele AI.
+A medieval building and warfare game where players collaborate against an AI that develops progressively. Build bases, train armies, and fight to destroy all AI bases.
 
 ### Key Features
 
-- **Co-op vs AI** - Jucătorii colaborează, nu concurează
-- **Persistent World** - Jocul continuă și când ești offline
-- **Auto-Defense** - Armata ta apără automat baza când nu ești online
-- **Progressive Difficulty** - AI-ul se dezvoltă natural în timp
-- **Production Chains** - Economia bazată pe lanțuri de producție (ca în Stronghold)
+- **Co-op vs AI** - Players collaborate, not compete
+- **Persistent World** - The game continues even when you're offline
+- **Auto-Defense** - Your army defends automatically when you're offline
+- **Progressive Difficulty** - AI develops naturally over time
+- **Production Chains** - Economy based on production chains (like Stronghold)
 
 ## Map & Territory
 
-- **Hartă mare și deschisă**
-- **Fără teritorii predefinite** - construiești oriunde
-- **Restricție:** Nu poți construi dacă ești sub atac
+- **Large, open map**
+- **No predefined territories** - build anywhere
+- **Restriction:** Cannot build while under attack
 
-## Baze
+## Bases
 
-### Baze Jucători
-- Fiecare jucător are **baza lui separată**
-- Poziționare liberă pe hartă
-- Poate fi extinsă în orice direcție
+### Player Bases
+- Each player has **their own separate base**
+- Free positioning on map
+- Can be expanded in any direction
 
-### Baze AI
-- **Multiple baze** distribuite pe hartă
-- **Identice cu jucătorii** - aceleași clădiri, unități, economie
-- Se dezvoltă în timp (clădiri noi, armate mai mari)
-- Lansează **atacuri periodice** asupra jucătorilor
-- Dificultate crescătoare pe măsură ce jocul avansează
+### AI Bases
+- **Multiple bases** distributed across the map
+- **Identical to players** - same buildings, units, economy
+- Develop over time (new buildings, larger armies)
+- Launch **periodic attacks** on players
+- Increasing difficulty as the game progresses
 
 ---
 
-## Clădiri
+## Buildings
 
-### 🏛️ Principal
+### 🏛️ Main
 
-| Clădire | Funcție |
-|---------|---------|
-| Primărie | Centrul bazei, deblocă alte clădiri |
+| Building | Function |
+|----------|----------|
+| Town Hall | Base center, unlocks other buildings |
 
-### ⛏️ Extracție Resurse
+### ⛏️ Resource Extraction
 
-| Clădire | Produce |
-|---------|---------|
-| Mină de fier | Fier |
-| Mină de piatră | Piatră |
-| Lumbermill | Lemn |
+| Building | Produces |
+|----------|----------|
+| Iron Mine | Iron |
+| Stone Mine | Stone |
+| Lumbermill | Wood |
 
-### 🍖 Producție Mâncare
+### 🍖 Food Production
 
-| Clădire | Input | Output |
-|---------|-------|--------|
-| Fermă de porci | - | Carne |
-| Fermă de vaci | - | Lapte |
-| Brânzărie | Lapte | Brânză |
-| Livadă meri | - | Mere |
-| Livadă cireși | - | Cireșe |
-| Lan de grâu | - | Grâu |
-| Moară de grâu | Grâu | Făină |
-| Brutărie | Făină | Pâine |
+| Building | Input | Output |
+|----------|-------|--------|
+| Pig Farm | - | Meat |
+| Cow Farm | - | Milk |
+| Dairy | Milk | Cheese |
+| Apple Orchard | - | Apples |
+| Cherry Orchard | - | Cherries |
+| Wheat Field | - | Wheat |
+| Wheat Mill | Wheat | Flour |
+| Bakery | Flour | Bread |
 
-### 📦 Depozite
+### 📦 Storage
 
-| Clădire | Stochează |
-|---------|-----------|
-| Depozit mâncare | Toate tipurile de mâncare |
-| Depozit materie primă | Lemn, piatră, fier |
-| Depozit arme | Arme și armuri |
+| Building | Stores |
+|----------|--------|
+| Food Storage | All food types |
+| Raw Material Storage | Wood, stone, iron |
+| Weapons Storage | Weapons and armor |
 
-### ⚔️ Producție Arme
+### ⚔️ Weapons Production
 
-| Clădire | Input | Output |
-|---------|-------|--------|
-| Atelier arcuri | Lemn | Arcuri |
-| Atelier sulițe | Lemn, Fier | Sulițe |
-| Atelier armuri | Fier | Armuri |
-| Atelier săbii | Fier | Săbii |
+| Building | Input | Output |
+|----------|-------|--------|
+| Bow Workshop | Wood | Bows |
+| Spear Workshop | Wood, Iron | Spears |
+| Armor Workshop | Iron | Armor |
+| Sword Workshop | Iron | Swords |
 
-### 🏠 Populație
+### 🏠 Population
 
-| Clădire | Funcție |
-|---------|---------|
-| Case | Adăpostesc muncitori |
-| Barracks | Adăpostesc soldați, antrenare |
+| Building | Function |
+|----------|----------|
+| Houses | Shelter workers |
+| Barracks | Shelter soldiers, training |
 
 ### 🛡️ Defensive
 
-| Clădire | Funcție |
-|---------|---------|
-| Turn | Apărare, vizibilitate |
-| Zid | Barieră defensivă |
+| Building | Function |
+|----------|----------|
+| Tower | Defense, visibility |
+| Wall | Defensive barrier |
 
 ---
 
@@ -108,34 +108,34 @@ Un joc medieval de construcție și război în care jucătorii colaborează îm
 
 ```
 ┌─────────────┐
-│  Primărie   │
+│  Town Hall  │
 └──────┬──────┘
-       │ antrenează
+       │ trains
        ▼
 ┌─────────────┐
-│  Muncitori  │
+│   Workers   │
 └──────┬──────┘
-       │ produc
+       │ produce
        ▼
 ┌─────────────────────────────────┐
-│  Lemn, Piatră, Fier, Mâncare   │
+│    Wood, Stone, Iron, Food     │
 └──────┬──────────────────────────┘
        │
        ▼
 ┌─────────────┐     ┌─────────────┐
-│    Fier     │────▶│   Ateliere  │
+│    Iron     │────▶│  Workshops  │
 └─────────────┘     └──────┬──────┘
-                           │ produc
+                           │ produce
                            ▼
                    ┌───────────────┐
-                   │ Arcuri/Săbii/ │
-                   │ Sulițe/Armuri │
+                   │  Bows/Swords/ │
+                   │ Spears/Armor  │
                    └───────┬───────┘
                            │
        ┌───────────────────┤
        ▼                   ▼
 ┌─────────────┐     ┌─────────────┐
-│   Mâncare   │ + │    Arme     │
+│    Food     │  +  │   Weapons   │
 └──────┬──────┘     └──────┬──────┘
        │                   │
        └─────────┬─────────┘
@@ -143,143 +143,143 @@ Un joc medieval de construcție și război în care jucătorii colaborează îm
          ┌─────────────┐
          │  Barracks   │
          └──────┬──────┘
-                │ antrenează
+                │ trains
                 ▼
          ┌─────────────┐
-         │   Soldați   │
+         │  Soldiers   │
          └─────────────┘
 ```
 
 ## Production Chains
 
 ```
-🌾 PÂINE
-Lan de grâu → Moară → Brutărie → Pâine
+🌾 BREAD
+Wheat Field → Mill → Bakery → Bread
 
-🧀 BRÂNZĂ  
-Fermă de vaci → Brânzărie → Brânză
+🧀 CHEESE  
+Cow Farm → Dairy → Cheese
 
-⚔️ ARME
-Mină de fier → Ateliere → Săbii/Sulițe/Armuri
-Lumbermill → Ateliere → Arcuri/Sulițe
+⚔️ WEAPONS
+Iron Mine → Workshops → Swords/Spears/Armor
+Lumbermill → Workshops → Bows/Spears
 ```
 
 ---
 
-## Resurse
+## Resources
 
-### Materii Prime
+### Raw Materials
 
-| Resursă | Sursă | Utilizare |
-|---------|-------|-----------|
-| **Lemn** | Lumbermill | Construcții, arme |
-| **Piatră** | Mină de piatră | Fortificații |
-| **Fier** | Mină de fier | Arme, armuri |
+| Resource | Source | Use |
+|----------|--------|-----|
+| **Wood** | Lumbermill | Construction, weapons |
+| **Stone** | Stone Mine | Fortifications |
+| **Iron** | Iron Mine | Weapons, armor |
 
-### Mâncare
+### Food
 
-| Tip | Sursă |
-|-----|-------|
-| Carne | Fermă de porci |
-| Lapte | Fermă de vaci |
-| Brânză | Brânzărie (din lapte) |
-| Mere | Livadă meri |
-| Cireșe | Livadă cireși |
-| Pâine | Brutărie (din făină) |
+| Type | Source |
+|------|--------|
+| Meat | Pig Farm |
+| Milk | Cow Farm |
+| Cheese | Dairy (from milk) |
+| Apples | Apple Orchard |
+| Cherries | Cherry Orchard |
+| Bread | Bakery (from flour) |
 
-### Arme
+### Weapons
 
-| Armă | Ingrediente |
-|------|-------------|
-| Arc | Lemn |
-| Suliță | Lemn + Fier |
-| Sabie | Fier |
-| Armură | Fier |
+| Weapon | Ingredients |
+|--------|-------------|
+| Bow | Wood |
+| Spear | Wood + Iron |
+| Sword | Iron |
+| Armor | Iron |
 
 ---
 
-## Unități Militare
+## Military Units
 
-| Unitate | HP | DPS | Rază | Echipament necesar |
-|---------|-----|-----|------|-------------------|
-| **Arcaș** | 40 | 8 | 8 | Arc |
-| **Spadasin** | 100 | 15 | melee | Sabie |
-| **Sulițaș** | 80 | 12 | melee | Suliță |
+| Unit | HP | DPS | Range | Required Equipment |
+|------|-----|-----|-------|-------------------|
+| **Archer** | 40 | 8 | 8 | Bow |
+| **Swordsman** | 100 | 15 | melee | Sword |
+| **Spearman** | 80 | 12 | melee | Spear |
 
 ### Combat System
 
-- **Fără rock-paper-scissors** - nu există counter-uri între unități
-- Fiecare unitate are **DPS fix**
-- Contează: numărul de unități, poziționare, focusarea țintelor
-- Arcașii au avantaj la distanță, dar sunt slabi în melee
+- **No rock-paper-scissors** - no counters between units
+- Each unit has **fixed DPS**
+- What matters: number of units, positioning, target focus
+- Archers have range advantage but are weak in melee
 
 ---
 
-## Muncitori
+## Workers
 
-- **Antrenați la Primărie**
-- Alocați manual la clădiri de producție
-- Fără muncitor = clădirea nu produce
+- **Trained at Town Hall**
+- Manually assigned to production buildings
+- No worker = building doesn't produce
 
 ---
 
-## Upkeep (Mâncare)
+## Upkeep (Food)
 
-⚠️ **Mâncarea e critică!**
+⚠️ **Food is critical!**
 
-- **Toți consumă mâncare constant** (muncitori + soldați)
-- Fără mâncare = satul moare de foame
-- Trebuie balansat: nu antrena mai mulți decât poți hrăni
+- **Everyone consumes food constantly** (workers + soldiers)
+- No food = village starves
+- Must balance: don't train more than you can feed
 
 ---
 
 ## Combat
 
-- **Bătălii în timp real**
-- **Damage per second (DPS)** - fiecare unitate are DPS-ul ei
-- **Morală:** Unitățile fug când armata scade sub 20% HP
+- **Real-time battles**
+- **Damage per second (DPS)** - each unit has its own DPS
+- **Morale:** Units flee when army drops below 20% HP
 
 ### Auto-Defense (Offline)
-- Când ești offline, armata ta **apără automat** baza
-- AI defensiv simplu: atacă inamicii din rază
-- Primești raport când te reconectezi
+- When offline, your army **defends automatically**
+- Simple defensive AI: attacks enemies in range
+- You receive a report when you reconnect
 
 ---
 
-## Atacuri AI
+## AI Attacks
 
-- Vin **periodic** (frecvența crește în timp)
-- Intensitate bazată pe:
-  - Cât de dezvoltată e baza ta
-  - Cât timp a trecut în joc
-  - Câte baze AI au fost distruse
-
----
-
-## Condiție de Victorie
-
-🏆 **Distrugeți toate bazele AI**
-
-Jucătorii câștigă când ultima bază AI este eliminată.
+- Come **periodically** (frequency increases over time)
+- Intensity based on:
+  - How developed your base is
+  - How much time has passed in game
+  - How many AI bases have been destroyed
 
 ---
 
-## Flux de Joc
+## Victory Condition
 
-1. **Early Game** - Construiești baza, setezi production chains
-2. **Mid Game** - Aperi împotriva atacurilor AI, produci arme
-3. **Late Game** - Coordonezi atacuri cu alți jucători asupra bazelor AI
-4. **End Game** - Asalt final pe bazele AI rămase
+🏆 **Destroy all AI bases**
 
----
-
-## De Definit (Balancing)
-
-- [ ] Costuri exacte pentru clădiri
-- [ ] Timpi de producție
-- [ ] DPS și HP exacte per unitate
+Players win when the last AI base is eliminated.
 
 ---
 
-*Document Version: 2.1*  
+## Game Flow
+
+1. **Early Game** - Build base, set up production chains
+2. **Mid Game** - Defend against AI attacks, produce weapons
+3. **Late Game** - Coordinate attacks with other players on AI bases
+4. **End Game** - Final assault on remaining AI bases
+
+---
+
+## To Define (Balancing)
+
+- [ ] Exact building costs
+- [ ] Production times
+- [ ] Exact DPS and HP per unit
+
+---
+
+*Document Version: 1.0*  
 *Last Updated: 2026-01-27*
