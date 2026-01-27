@@ -28,6 +28,27 @@ A medieval building and warfare game where players collaborate against an AI tha
 - **Fog of War** - unexplored areas are hidden
 - **Shared Vision** - allied players share map visibility
 
+---
+
+## Game Session
+
+### Lobby System
+- Players can **create new games** in a lobby
+- Game creator selects a **predefined map**
+- Other players can **browse and join** available games
+- **Join anytime** - new players can join mid-game if slots are available
+
+### Game Start
+- Each player **spawns in a different zone** of the map
+- Starting resources: *(to be defined)*
+- **AI bases are fixed** per map (predefined positions and count)
+
+### Player Slots
+- Maximum players defined per map (1-4)
+- Late joiners start fresh (no catch-up bonus)
+
+---
+
 ## Bases
 
 ### Player Bases
