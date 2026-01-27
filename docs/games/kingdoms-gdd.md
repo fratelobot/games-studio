@@ -103,6 +103,52 @@ Un joc medieval de construcție și război în care jucătorii colaborează îm
 
 ---
 
+## Economy Flow
+
+```
+┌─────────────┐
+│  Primărie   │
+└──────┬──────┘
+       │ antrenează
+       ▼
+┌─────────────┐
+│  Muncitori  │
+└──────┬──────┘
+       │ produc
+       ▼
+┌─────────────────────────────────┐
+│  Lemn, Piatră, Fier, Mâncare   │
+└──────┬──────────────────────────┘
+       │
+       ▼
+┌─────────────┐     ┌─────────────┐
+│    Fier     │────▶│   Ateliere  │
+└─────────────┘     └──────┬──────┘
+                           │ produc
+                           ▼
+                   ┌───────────────┐
+                   │ Arcuri/Săbii/ │
+                   │ Sulițe/Armuri │
+                   └───────┬───────┘
+                           │
+       ┌───────────────────┤
+       ▼                   ▼
+┌─────────────┐     ┌─────────────┐
+│   Mâncare   │ + │    Arme     │
+└──────┬──────┘     └──────┬──────┘
+       │                   │
+       └─────────┬─────────┘
+                 ▼
+         ┌─────────────┐
+         │  Barracks   │
+         └──────┬──────┘
+                │ antrenează
+                ▼
+         ┌─────────────┐
+         │   Soldați   │
+         └─────────────┘
+```
+
 ## Production Chains
 
 ```
@@ -153,33 +199,26 @@ Lumbermill → Ateliere → Arcuri/Sulițe
 
 ## Unități Militare
 
-### Infanterie
-
-| Unitate | HP | DPS | Echipament necesar |
-|---------|-----|-----|-------------------|
-| Milițian | 50 | 5 | - |
-| Spadasin | 100 | 15 | Sabie |
-| Sulițaș | 80 | 12 | Suliță |
-
-### Arcași
-
 | Unitate | HP | DPS | Rază | Echipament necesar |
 |---------|-----|-----|------|-------------------|
-| Arcaș | 40 | 8 | 8 | Arc |
-| Arbaletier | 50 | 15 | 6 | Arc + Armură |
+| **Arcaș** | 40 | 8 | 8 | Arc |
+| **Spadasin** | 100 | 15 | melee | Sabie |
+| **Sulițaș** | 80 | 12 | melee | Suliță |
 
-### Cavalerie
+### Rock-Paper-Scissors Combat?
 
-| Unitate | HP | DPS | Viteză | Echipament necesar |
-|---------|-----|-----|--------|-------------------|
-| Cercetaș | 60 | 8 | 6 | - |
-| Cavaler | 150 | 25 | 5 | Sabie + Armură |
+*(De definit - propunere:)*
+- 🏹 Arcași > Sulițași (îi nimeresc de la distanță)
+- 🔱 Sulițași > Spadasini (rază mai mare)
+- ⚔️ Spadasini > Arcași (rapid, ajung în melee)
 
 ---
 
 ## Muncitori
 
-*(De definit: automat sau antrenați separat?)*
+- **Antrenați la Primărie**
+- Alocați manual la clădiri de producție
+- Fără muncitor = clădirea nu produce
 
 ---
 
@@ -225,8 +264,9 @@ Jucătorii câștigă când ultima bază AI este eliminată.
 
 ## De Definit
 
-- [ ] Cum arată o bază AI?
-- [ ] Muncitorii - automat sau antrenați separat?
+- [ ] **Upkeep:** Soldații consumă mâncare constant sau doar la antrenare?
+- [ ] **Combat balance:** Confirmăm rock-paper-scissors? (Arcași>Sulițași>Spadasini>Arcași)
+- [ ] **Baze AI:** Au aceleași clădiri/unități ca playerii sau diferite?
 - [ ] Costuri exacte pentru clădiri
 - [ ] Timpi de producție
 
