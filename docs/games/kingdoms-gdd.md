@@ -55,7 +55,7 @@ A medieval building and warfare game where players collaborate against an AI tha
 - Each player has **their own separate base**
 - Free positioning on map
 - Can be expanded in any direction
-- **Town Hall destroyed = player eliminated**
+- **Town Hall destroyed = player eliminated** (all buildings and units disappear)
 
 ### AI Bases
 - **Multiple bases** distributed across the map
