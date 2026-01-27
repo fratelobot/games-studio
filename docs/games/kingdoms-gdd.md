@@ -18,6 +18,7 @@ Un joc medieval de construcție și război în care jucătorii colaborează îm
 - **Persistent World** - Jocul continuă și când ești offline
 - **Auto-Defense** - Armata ta apără automat baza când nu ești online
 - **Progressive Difficulty** - AI-ul se dezvoltă natural în timp
+- **Production Chains** - Economia bazată pe lanțuri de producție (ca în Stronghold)
 
 ## Map & Territory
 
@@ -38,65 +39,162 @@ Un joc medieval de construcție și război în care jucătorii colaborează îm
 - Lansează **atacuri periodice** asupra jucătorilor
 - Dificultate crescătoare pe măsură ce jocul avansează
 
+---
+
 ## Clădiri
 
-| Clădire | Funcție | Cost |
-|---------|---------|------|
-| Castel | Baza principală, spawn point | Start |
-| Cazarmă | Antrenează infanterie | 100 lemn |
-| Poligon | Antrenează arcași | 150 lemn |
-| Grajd | Antrenează cavalerie | 200 lemn, 100 aur |
-| Turn | Apărare, vizibilitate | 80 piatră |
-| Zid | Barieră defensivă | 50 piatră/segment |
-| Fermă | Generează mâncare | 50 lemn |
-| Mină | Generează aur | 100 lemn |
-| Fierăstrău | Generează lemn | 50 lemn |
+### 🏛️ Principal
+
+| Clădire | Funcție |
+|---------|---------|
+| Primărie | Centrul bazei, deblocă alte clădiri |
+
+### ⛏️ Extracție Resurse
+
+| Clădire | Produce |
+|---------|---------|
+| Mină de fier | Fier |
+| Mină de piatră | Piatră |
+| Lumbermill | Lemn |
+
+### 🍖 Producție Mâncare
+
+| Clădire | Input | Output |
+|---------|-------|--------|
+| Fermă de porci | - | Carne |
+| Fermă de vaci | - | Lapte |
+| Brânzărie | Lapte | Brânză |
+| Livadă meri | - | Mere |
+| Livadă cireși | - | Cireșe |
+| Lan de grâu | - | Grâu |
+| Moară de grâu | Grâu | Făină |
+| Brutărie | Făină | Pâine |
+
+### 📦 Depozite
+
+| Clădire | Stochează |
+|---------|-----------|
+| Depozit mâncare | Toate tipurile de mâncare |
+| Depozit materie primă | Lemn, piatră, fier |
+| Depozit arme | Arme și armuri |
+
+### ⚔️ Producție Arme
+
+| Clădire | Input | Output |
+|---------|-------|--------|
+| Atelier arcuri | Lemn | Arcuri |
+| Atelier sulițe | Lemn, Fier | Sulițe |
+| Atelier armuri | Fier | Armuri |
+| Atelier săbii | Fier | Săbii |
+
+### 🏠 Populație
+
+| Clădire | Funcție |
+|---------|---------|
+| Case | Adăpostesc muncitori |
+| Barracks | Adăpostesc soldați, antrenare |
+
+### 🛡️ Defensive
+
+| Clădire | Funcție |
+|---------|---------|
+| Turn | Apărare, vizibilitate |
+| Zid | Barieră defensivă |
+
+---
+
+## Production Chains
+
+```
+🌾 PÂINE
+Lan de grâu → Moară → Brutărie → Pâine
+
+🧀 BRÂNZĂ  
+Fermă de vaci → Brânzărie → Brânză
+
+⚔️ ARME
+Mină de fier → Ateliere → Săbii/Sulițe/Armuri
+Lumbermill → Ateliere → Arcuri/Sulițe
+```
+
+---
 
 ## Resurse
 
-| Resursă | Utilizare |
-|---------|-----------|
-| **Lemn** | Material de construcție de bază |
-| **Piatră** | Structuri defensive |
-| **Aur** | Unități avansate, upgrade-uri |
-| **Mâncare** | Întreținere unități, limită populație |
+### Materii Prime
 
-## Unități
+| Resursă | Sursă | Utilizare |
+|---------|-------|-----------|
+| **Lemn** | Lumbermill | Construcții, arme |
+| **Piatră** | Mină de piatră | Fortificații |
+| **Fier** | Mină de fier | Arme, armuri |
+
+### Mâncare
+
+| Tip | Sursă |
+|-----|-------|
+| Carne | Fermă de porci |
+| Lapte | Fermă de vaci |
+| Brânză | Brânzărie (din lapte) |
+| Mere | Livadă meri |
+| Cireșe | Livadă cireși |
+| Pâine | Brutărie (din făină) |
+
+### Arme
+
+| Armă | Ingrediente |
+|------|-------------|
+| Arc | Lemn |
+| Suliță | Lemn + Fier |
+| Sabie | Fier |
+| Armură | Fier |
+
+---
+
+## Unități Militare
 
 ### Infanterie
 
-| Unitate | HP | Atac | Viteză | Cost |
-|---------|-----|------|--------|------|
-| Milițian | 50 | 5 | 3 | 10 mâncare |
-| Spadasin | 100 | 15 | 2.5 | 30 mâncare, 10 aur |
-| Suliță | 80 | 12 | 2 | 25 mâncare |
+| Unitate | HP | DPS | Echipament necesar |
+|---------|-----|-----|-------------------|
+| Milițian | 50 | 5 | - |
+| Spadasin | 100 | 15 | Sabie |
+| Sulițaș | 80 | 12 | Suliță |
 
 ### Arcași
 
-| Unitate | HP | Atac | Rază | Cost |
-|---------|-----|------|------|------|
-| Arcaș | 40 | 8 | 8 | 20 mâncare, 5 aur |
-| Arbaletier | 50 | 15 | 6 | 30 mâncare, 15 aur |
+| Unitate | HP | DPS | Rază | Echipament necesar |
+|---------|-----|-----|------|-------------------|
+| Arcaș | 40 | 8 | 8 | Arc |
+| Arbaletier | 50 | 15 | 6 | Arc + Armură |
 
 ### Cavalerie
 
-| Unitate | HP | Atac | Viteză | Cost |
-|---------|-----|------|--------|------|
-| Cercetaș | 60 | 8 | 6 | 40 mâncare, 20 aur |
-| Cavaler | 150 | 25 | 5 | 80 mâncare, 50 aur |
+| Unitate | HP | DPS | Viteză | Echipament necesar |
+|---------|-----|-----|--------|-------------------|
+| Cercetaș | 60 | 8 | 6 | - |
+| Cavaler | 150 | 25 | 5 | Sabie + Armură |
+
+---
+
+## Muncitori
+
+*(De definit: automat sau antrenați separat?)*
+
+---
 
 ## Combat
 
 - **Bătălii în timp real**
 - **Damage per second (DPS)** - fiecare unitate are DPS-ul ei
-- **Formula damage:** `damage = attack * (1 - armor/100)`
-- **Critical hit:** 10% șansă pentru 2x damage
 - **Morală:** Unitățile fug când armata scade sub 20% HP
 
 ### Auto-Defense (Offline)
 - Când ești offline, armata ta **apără automat** baza
 - AI defensiv simplu: atacă inamicii din rază
 - Primești raport când te reconectezi
+
+---
 
 ## Atacuri AI
 
@@ -106,27 +204,33 @@ Un joc medieval de construcție și război în care jucătorii colaborează îm
   - Cât timp a trecut în joc
   - Câte baze AI au fost distruse
 
+---
+
 ## Condiție de Victorie
 
 🏆 **Distrugeți toate bazele AI**
 
 Jucătorii câștigă când ultima bază AI este eliminată.
 
+---
+
 ## Flux de Joc
 
-1. **Early Game** - Construiești baza, aduni resurse
-2. **Mid Game** - Aperi împotriva atacurilor AI, te extinzi
+1. **Early Game** - Construiești baza, setezi production chains
+2. **Mid Game** - Aperi împotriva atacurilor AI, produci arme
 3. **Late Game** - Coordonezi atacuri cu alți jucători asupra bazelor AI
 4. **End Game** - Asalt final pe bazele AI rămase
 
-## Dificultate Progresivă
+---
 
-- AI-ul **se dezvoltă în paralel** cu jucătorii
-- Bazele AI produc unități și se întăresc
-- Atacurile devin mai frecvente și mai puternice
-- Nu există "grind" - trebuie să avansezi activ
+## De Definit
+
+- [ ] Cum arată o bază AI?
+- [ ] Muncitorii - automat sau antrenați separat?
+- [ ] Costuri exacte pentru clădiri
+- [ ] Timpi de producție
 
 ---
 
-*Document Version: 2.0*  
+*Document Version: 2.1*  
 *Last Updated: 2026-01-27*
