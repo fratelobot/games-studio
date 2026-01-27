@@ -2,252 +2,131 @@
 
 ## Overview
 
-**Genre:** Real-Time Strategy (RTS) / Multiplayer  
+**Genre:** Co-op Persistent RTS  
+**Players:** 1-4 jucători vs AI  
 **Inspiration:** Stronghold Kingdoms  
-**Platform:** Web (React Three Fiber)  
-**Players:** Multiplayer (2-8 players)
+**Platform:** Web (browser)  
+**Session Duration:** Săptămâni (persistent world)
 
 ## Core Concept
 
-A multiplayer medieval kingdom-building and warfare game where players build castles, gather resources, train armies, and battle for territorial control.
+Un joc medieval de construcție și război în care jucătorii colaborează împotriva unui AI care se dezvoltă progresiv. Construiești baze, antrenezi armate și lupți pentru a distruge toate bazele AI.
 
-## Visual Style
+### Key Features
 
-- **3D with minimalist geometry**
-- Basic shapes: cubes, spheres, cylinders, cones
-- Low-poly aesthetic, clean and readable
-- Color-coded factions
-- No complex 3D models in initial version
+- **Co-op vs AI** - Jucătorii colaborează, nu concurează
+- **Persistent World** - Jocul continuă și când ești offline
+- **Auto-Defense** - Armata ta apără automat baza când nu ești online
+- **Progressive Difficulty** - AI-ul se dezvoltă natural în timp
 
-## Game Mechanics
+## Map & Territory
 
-### 1. Base Building
+- **Hartă mare și deschisă**
+- **Fără teritorii predefinite** - construiești oriunde
+- **Restricție:** Nu poți construi dacă ești sub atac
 
-**Structures:**
-| Building | Function | Cost |
-|----------|----------|------|
-| Castle | Main base, spawn point | Starting |
-| Barracks | Train infantry | 100 wood |
-| Archery Range | Train archers | 150 wood |
-| Stable | Train cavalry | 200 wood, 100 gold |
-| Tower | Defense, vision | 80 stone |
-| Wall | Defense barrier | 50 stone/segment |
-| Farm | Generate food | 50 wood |
-| Mine | Generate gold | 100 wood |
-| Lumber Mill | Generate wood | 50 wood |
+## Baze
 
-### 2. Resources
+### Baze Jucători
+- Fiecare jucător are **baza lui separată**
+- Poziționare liberă pe hartă
+- Poate fi extinsă în orice direcție
 
-- **Wood** - Basic building material
-- **Stone** - Defensive structures
-- **Gold** - Advanced units, upgrades
-- **Food** - Unit upkeep, population cap
+### Baze AI
+- **Multiple baze** distribuite pe hartă
+- Se dezvoltă în timp (clădiri noi, armate mai mari)
+- Lansează **atacuri periodice** asupra jucătorilor
+- Dificultate crescătoare pe măsură ce jocul avansează
 
-### 3. Units
+## Clădiri
 
-**Infantry:**
-| Unit | HP | Attack | Speed | Cost |
-|------|-----|--------|-------|------|
-| Militia | 50 | 5 | 3 | 10 food |
-| Swordsman | 100 | 15 | 2.5 | 30 food, 10 gold |
-| Pikeman | 80 | 12 | 2 | 25 food |
+| Clădire | Funcție | Cost |
+|---------|---------|------|
+| Castel | Baza principală, spawn point | Start |
+| Cazarmă | Antrenează infanterie | 100 lemn |
+| Poligon | Antrenează arcași | 150 lemn |
+| Grajd | Antrenează cavalerie | 200 lemn, 100 aur |
+| Turn | Apărare, vizibilitate | 80 piatră |
+| Zid | Barieră defensivă | 50 piatră/segment |
+| Fermă | Generează mâncare | 50 lemn |
+| Mină | Generează aur | 100 lemn |
+| Fierăstrău | Generează lemn | 50 lemn |
 
-**Ranged:**
-| Unit | HP | Attack | Range | Cost |
-|------|-----|--------|-------|------|
-| Archer | 40 | 8 | 8 | 20 food, 5 gold |
-| Crossbowman | 50 | 15 | 6 | 30 food, 15 gold |
+## Resurse
 
-**Cavalry:**
-| Unit | HP | Attack | Speed | Cost |
-|------|-----|--------|-------|------|
-| Scout | 60 | 8 | 6 | 40 food, 20 gold |
-| Knight | 150 | 25 | 5 | 80 food, 50 gold |
+| Resursă | Utilizare |
+|---------|-----------|
+| **Lemn** | Material de construcție de bază |
+| **Piatră** | Structuri defensive |
+| **Aur** | Unități avansate, upgrade-uri |
+| **Mâncare** | Întreținere unități, limită populație |
 
-### 4. Combat System
+## Unități
 
-- **Real-time battles**
-- Units have attack animations (simple geometric transformations)
-- Damage calculation: `damage = attack * (1 - armor/100)`
-- Critical hits: 10% chance for 2x damage
-- Morale system: units flee when army HP < 20%
+### Infanterie
 
-### 5. Victory Conditions
+| Unitate | HP | Atac | Viteză | Cost |
+|---------|-----|------|--------|------|
+| Milițian | 50 | 5 | 3 | 10 mâncare |
+| Spadasin | 100 | 15 | 2.5 | 30 mâncare, 10 aur |
+| Suliță | 80 | 12 | 2 | 25 mâncare |
 
-1. **Conquest** - Destroy all enemy castles
-2. **Domination** - Control 75% of map territories for 5 minutes
-3. **Economic** - Accumulate 10,000 gold
+### Arcași
 
-## Technical Architecture
+| Unitate | HP | Atac | Rază | Cost |
+|---------|-----|------|------|------|
+| Arcaș | 40 | 8 | 8 | 20 mâncare, 5 aur |
+| Arbaletier | 50 | 15 | 6 | 30 mâncare, 15 aur |
 
-### Networking Stack
+### Cavalerie
 
-```
-┌─────────────────────────────────────────────┐
-│                 Client                       │
-│  React Three Fiber + Valtio (local state)   │
-└──────────────────┬──────────────────────────┘
-                   │ WebSocket
-                   ▼
-┌─────────────────────────────────────────────┐
-│              Game Server                     │
-│  - Authoritative game state                 │
-│  - Tick-based simulation (20 ticks/sec)     │
-│  - State delta compression                  │
-│  - Client-side prediction                   │
-└──────────────────┬──────────────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────────────┐
-│           State Synchronization             │
-│  - Entity interpolation                     │
-│  - Input buffering                          │
-│  - Lag compensation                         │
-└─────────────────────────────────────────────┘
-```
+| Unitate | HP | Atac | Viteză | Cost |
+|---------|-----|------|--------|------|
+| Cercetaș | 60 | 8 | 6 | 40 mâncare, 20 aur |
+| Cavaler | 150 | 25 | 5 | 80 mâncare, 50 aur |
 
-### Entity Component System (ECS)
+## Combat
 
-```typescript
-// Core components
-interface Position { x: number; y: number; z: number }
-interface Velocity { x: number; y: number; z: number }
-interface Health { current: number; max: number }
-interface Faction { playerId: string; color: string }
-interface UnitType { type: 'militia' | 'archer' | 'knight' | ... }
-interface Target { entityId: string | null }
-```
+- **Bătălii în timp real**
+- **Damage per second (DPS)** - fiecare unitate are DPS-ul ei
+- **Formula damage:** `damage = attack * (1 - armor/100)`
+- **Critical hit:** 10% șansă pentru 2x damage
+- **Morală:** Unitățile fug când armata scade sub 20% HP
 
-### Networking Protocol
+### Auto-Defense (Offline)
+- Când ești offline, armata ta **apără automat** baza
+- AI defensiv simplu: atacă inamicii din rază
+- Primești raport când te reconectezi
 
-**Client → Server:**
-```typescript
-type ClientMessage = 
-  | { type: 'move'; unitIds: string[]; target: Position }
-  | { type: 'attack'; unitIds: string[]; targetId: string }
-  | { type: 'build'; buildingType: string; position: Position }
-  | { type: 'train'; buildingId: string; unitType: string }
-```
+## Atacuri AI
 
-**Server → Client:**
-```typescript
-type ServerMessage =
-  | { type: 'state'; tick: number; entities: EntityDelta[] }
-  | { type: 'event'; event: GameEvent }
-  | { type: 'sync'; fullState: GameState }
-```
+- Vin **periodic** (frecvența crește în timp)
+- Intensitate bazată pe:
+  - Cât de dezvoltată e baza ta
+  - Cât timp a trecut în joc
+  - Câte baze AI au fost distruse
 
-### Pathfinding: Flowfield
+## Condiție de Victorie
 
-For large unit counts (100+ units), traditional A* is too expensive. 
-We'll use **Flowfield pathfinding**:
+🏆 **Distrugeți toate bazele AI**
 
-1. **Navigation grid** - Divide map into cells
-2. **Cost field** - Distance from each cell to target
-3. **Integration field** - Cumulative cost considering obstacles
-4. **Flow field** - Direction vector per cell toward target
+Jucătorii câștigă când ultima bază AI este eliminată.
 
-Benefits:
-- O(1) lookup per unit per frame
-- Handles hundreds of units efficiently
-- Natural crowd behavior
+## Flux de Joc
 
-### State Management
+1. **Early Game** - Construiești baza, aduni resurse
+2. **Mid Game** - Aperi împotriva atacurilor AI, te extinzi
+3. **Late Game** - Coordonezi atacuri cu alți jucători asupra bazelor AI
+4. **End Game** - Asalt final pe bazele AI rămase
 
-```
-Valtio (Game State - mutates every frame)
-├── entities: Map<id, Entity>
-├── tick: number
-├── localPlayerId: string
-└── pendingInputs: Input[]
+## Dificultate Progresivă
 
-Jotai (UI State - changes occasionally)
-├── selectedUnits: string[]
-├── buildMode: BuildingType | null
-├── camera: CameraState
-└── settings: GameSettings
-```
-
-## Milestones
-
-### Phase 1: Foundation (Week 1-2)
-- [ ] Basic scene with terrain grid
-- [ ] Unit spawning and selection
-- [ ] Simple movement (click to move)
-- [ ] Camera controls
-
-### Phase 2: Combat (Week 3-4)
-- [ ] Unit stats and health bars
-- [ ] Attack system
-- [ ] Death and respawn
-- [ ] Basic AI (attack nearest enemy)
-
-### Phase 3: Building (Week 5-6)
-- [ ] Building placement system
-- [ ] Resource generation
-- [ ] Unit training queue
-- [ ] Building health and destruction
-
-### Phase 4: Networking (Week 7-10)
-- [ ] WebSocket server setup
-- [ ] State synchronization
-- [ ] Client-side prediction
-- [ ] Lag compensation
-- [ ] Flowfield pathfinding
-
-### Phase 5: Polish (Week 11-12)
-- [ ] UI/HUD improvements
-- [ ] Sound effects
-- [ ] Particle effects
-- [ ] Matchmaking
-- [ ] Leaderboards
-
-## File Structure
-
-```
-apps/kingdoms/
-├── src/
-│   ├── components/
-│   │   ├── Unit.tsx
-│   │   ├── Building.tsx
-│   │   ├── Terrain.tsx
-│   │   └── UI/
-│   ├── systems/
-│   │   ├── combat.ts
-│   │   ├── movement.ts
-│   │   ├── pathfinding.ts
-│   │   └── network.ts
-│   ├── stores/
-│   │   ├── gameStore.ts      # Valtio
-│   │   └── uiStore.ts        # Jotai
-│   ├── network/
-│   │   ├── client.ts
-│   │   ├── protocol.ts
-│   │   └── interpolation.ts
-│   └── utils/
-│       ├── flowfield.ts
-│       └── ecs.ts
-└── server/
-    ├── game.ts
-    ├── lobby.ts
-    └── network.ts
-```
-
-## Open Questions
-
-1. **Dedicated server or P2P?** 
-   - Recommendation: Dedicated server for authoritative state
-
-2. **Tick rate?**
-   - Recommendation: 20 ticks/sec (balance between responsiveness and bandwidth)
-
-3. **Max units per player?**
-   - Recommendation: Start with 50, optimize for 100+
-
-4. **Map size?**
-   - Recommendation: 100x100 grid cells for 2-4 players
+- AI-ul **se dezvoltă în paralel** cu jucătorii
+- Bazele AI produc unități și se întăresc
+- Atacurile devin mai frecvente și mai puternice
+- Nu există "grind" - trebuie să avansezi activ
 
 ---
 
-*Document Version: 1.0*  
+*Document Version: 2.0*  
 *Last Updated: 2026-01-27*
