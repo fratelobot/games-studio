@@ -35,6 +35,7 @@ Un joc medieval de construcție și război în care jucătorii colaborează îm
 
 ### Baze AI
 - **Multiple baze** distribuite pe hartă
+- **Identice cu jucătorii** - aceleași clădiri, unități, economie
 - Se dezvoltă în timp (clădiri noi, armate mai mari)
 - Lansează **atacuri periodice** asupra jucătorilor
 - Dificultate crescătoare pe măsură ce jocul avansează
@@ -222,6 +223,16 @@ Lumbermill → Ateliere → Arcuri/Sulițe
 
 ---
 
+## Upkeep (Mâncare)
+
+⚠️ **Mâncarea e critică!**
+
+- **Toți consumă mâncare constant** (muncitori + soldați)
+- Fără mâncare = satul moare de foame
+- Trebuie balansat: nu antrena mai mulți decât poți hrăni
+
+---
+
 ## Combat
 
 - **Bătălii în timp real**
@@ -264,9 +275,9 @@ Jucătorii câștigă când ultima bază AI este eliminată.
 
 ## De Definit
 
-- [ ] **Upkeep:** Soldații consumă mâncare constant sau doar la antrenare?
-- [ ] **Combat balance:** Confirmăm rock-paper-scissors? (Arcași>Sulițași>Spadasini>Arcași)
-- [ ] **Baze AI:** Au aceleași clădiri/unități ca playerii sau diferite?
+- [x] ~~Upkeep~~ → **Constant** (toți consumă mâncare)
+- [x] ~~Baze AI~~ → **Identice cu playerii**
+- [ ] **Combat counters:** Rock-paper-scissors sau toate unitățile egale?
 - [ ] Costuri exacte pentru clădiri
 - [ ] Timpi de producție
 
