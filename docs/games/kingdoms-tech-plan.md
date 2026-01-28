@@ -6,14 +6,14 @@
 - **Framework:** React 19 + TypeScript
 - **3D Rendering:** React Three Fiber + Three.js
 - **Camera:** Isometric
-- **State:** Colyseus client SDK (server state) + Jotai (local UI state)
+- **State:** Colyseus client SDK (server state) + Jotai (global/UI state) + Valtio (reactive game state)
 - **UI:** Tailwind CSS + shadcn/ui
-- **Hosting:** Cloudflare Pages
+- **Hosting:** Vercel
 
 ### Backend
 - **Framework:** Colyseus (multiplayer game server)
 - **Runtime:** Node.js
-- **Persistence:** JSON files / SQLite (upgrade to PostgreSQL later if needed)
+- **Persistence:** JSON files
 - **Hosting:** Hetzner VPS + Coolify
 - **CI/CD:** GitHub Actions → Coolify auto-deploy
 
@@ -38,9 +38,17 @@
 - Production/combat calculated server-side each tick
 
 ### Persistence
-- Game state saved periodically to disk
+- Game state saved periodically to JSON files
 - **Server runs 24/7** even when no players online
 - On reconnect, client receives current state
+
+### State Management
+
+| Layer | Library | Purpose |
+|-------|---------|---------|
+| Server sync | Colyseus | Authoritative game state from server |
+| Global/UI | Jotai | Settings, UI state, non-game data |
+| Reactive game | Valtio | Client-side game state that needs reactivity |
 
 ---
 
@@ -86,8 +94,8 @@ games-studio/
 
 ```
 ┌─────────────────┐     ┌─────────────────┐
-│ Cloudflare      │     │ Hetzner VPS     │
-│ Pages           │     │ + Coolify       │
+│ Vercel          │     │ Hetzner VPS     │
+│                 │     │ + Coolify       │
 │                 │     │                 │
 │ Frontend (React)│────▶│ Colyseus Server │
 │ Static assets   │ WS  │ Game state      │
@@ -97,13 +105,14 @@ games-studio/
 ### CI/CD Pipeline
 
 ```
-GitHub Push → GitHub Actions → Coolify Webhook → Auto Deploy
+GitHub Push → GitHub Actions → Coolify Webhook → Auto Deploy (backend)
+GitHub Push → Vercel Auto Deploy (frontend)
 ```
 
 - Push to `main` triggers deploy
-- Coolify handles build + restart
+- Coolify handles backend build + restart
+- Vercel handles frontend automatically
 - Zero-downtime deploys
-- Rollback available via Coolify UI
 
 ---
 
@@ -151,17 +160,15 @@ GitHub Push → GitHub Actions → Coolify Webhook → Auto Deploy
 
 ## Development Phases
 
-| Phase | Focus | Duration |
-|-------|-------|----------|
-| 0 | Infrastructure: Colyseus setup, Coolify deploy, basic state sync | 1 week |
-| 1 | Core: Buildings, workers, resources, storage | 2-3 weeks |
-| 2 | Combat: Units, pathfinding (flowfields), attack system | 2 weeks |
-| 3 | AI: Enemy bases, attack waves, scaling difficulty | 2 weeks |
-| 4 | Persistence: Save/restore, offline systems, reports | 2 weeks |
-| 5 | Multiplayer: Lobby, late join, shared vision | 2 weeks |
-| 6 | Polish: Balancing, UI, playtesting | ongoing |
-
-**Estimated time to MVP:** ~12 weeks
+| Phase | Focus |
+|-------|-------|
+| 0 | Infrastructure: Colyseus setup, Coolify deploy, basic state sync |
+| 1 | Core: Buildings, workers, resources, storage |
+| 2 | Combat: Units, pathfinding (flowfields), attack system |
+| 3 | AI: Enemy bases, attack waves, scaling difficulty |
+| 4 | Persistence: Save/restore, offline systems, reports |
+| 5 | Multiplayer: Lobby, late join, shared vision |
+| 6 | Polish: Balancing, UI, playtesting |
 
 ---
 
@@ -174,5 +181,5 @@ GitHub Push → GitHub Actions → Coolify Webhook → Auto Deploy
 
 ---
 
-*Document Version: 1.0*
-*Last Updated: 2026-01-27*
+*Document Version: 1.1*
+*Last Updated: 2026-01-28*
