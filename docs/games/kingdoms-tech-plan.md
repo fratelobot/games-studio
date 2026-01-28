@@ -52,6 +52,59 @@
 
 ---
 
+## Networking
+
+### Client-Server Communication
+
+**Client → Server (Commands only):**
+- `placeBuilding(type, x, y)`
+- `moveUnits(unitIds[], targetX, targetY)`
+- `attackTarget(unitIds[], targetId)`
+- `trainUnit(buildingId, unitType)`
+- `assignWorker(workerId, buildingId)`
+
+**Server → Client:**
+- State updates via Colyseus Schema (automatic delta sync)
+- Events/notifications (attack alerts, etc.) - future
+
+### Client-Side Prediction
+
+| Action | Prediction | Behavior |
+|--------|-----------|----------|
+| Building placement | ✅ Yes | Instant "ghost" preview → confirm/reject from server |
+| Unit movement | ✅ Yes | Units move immediately, server reconciles position |
+| Attack | ⚠️ Partial | Unit orients toward target, damage calculated on server |
+| Train unit | ❌ No | Only UI progress bar, server controls timing |
+
+**Reconciliation:** At 5 ticks/sec (200ms), minor teleportation on correction is acceptable.
+
+### Reconnection
+
+- **Timeout:** 5 minutes
+- Colyseus native reconnect: `room.reconnect(roomId, sessionId)`
+- Server holds player slot during timeout
+- On reconnect → full state sync automatically
+- After timeout expires → player marked as disconnected (can rejoin anytime as "fresh connect")
+
+### Unit Behavior (Connection Independent)
+
+Units behave the same whether player is online or offline:
+- Commands given are executed regardless of connection status
+- **Auto-defense always active:** units automatically retaliate when attacked
+- No difference between "online" and "offline" unit behavior
+- Player gives commands (move, attack) → units execute → auto-defend if attacked en route
+
+### Scale & Limits
+
+| Metric | Limit |
+|--------|-------|
+| Units per player | 50-100 max |
+| Units per AI base | ~50 |
+| Total entities (units + buildings) | ~500 max |
+| Area of Interest | Not needed for MVP (full state sync OK at this scale) |
+
+---
+
 ## Technical Decisions
 
 | Aspect | Decision |
@@ -181,5 +234,5 @@ GitHub Push → Vercel Auto Deploy (frontend)
 
 ---
 
-*Document Version: 1.1*
+*Document Version: 1.2*
 *Last Updated: 2026-01-28*
